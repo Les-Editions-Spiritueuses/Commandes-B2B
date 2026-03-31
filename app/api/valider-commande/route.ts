@@ -91,7 +91,7 @@ function getTypeProforma(regime: RegimeFiscal): "SUSPENDUS" | "ACQUITTES" {
 }
 
 function getRemiseCoffretPct(produit: ProduitRow): number {
-  const raw = toNumber(produit.remise_coffret, 0);
+  const raw = toNumber(produit.remise_coffret);
   return raw * 100;
 }
 
