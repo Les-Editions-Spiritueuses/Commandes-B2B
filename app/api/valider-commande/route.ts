@@ -136,10 +136,10 @@ async function getTranchesExpedition(): Promise<TrancheExpedition[]> {
   }
 
   return ((data ?? []) as TrancheExpeditionRow[]).map((row) => ({
-    qte_min: toNumber(row.qte_min, 0),
-    qte_max: row.qte_max == null ? null : toNumber(row.qte_max, 0),
-    frais_ttc: toNumber(row.frais_ttc, 0),
-  }));
+  qte_min: toNumber(row.qte_min ?? 0),
+  qte_max: row.qte_max === null ? null : toNumber(row.qte_max ?? 0),
+  frais_ttc: toNumber(row.frais_ttc ?? 0),
+}));
 }
 
 async function getPaliersRemise(): Promise<PalierRemise[]> {
