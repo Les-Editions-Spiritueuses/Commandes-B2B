@@ -114,14 +114,13 @@ async function getParametresFiscaux(): Promise<ParametresFiscaux> {
   }
 
   return {
-    taux_droits_alcool: toNumber(row.taux_droits_alcool, 0),
-    taux_vignette_alcool: toNumber(row.taux_vignette_alcool, 0),
-    taux_droits_rhum_dom: toNumber(row.taux_droits_rhum_dom, 0),
-    taux_vignette_rhum_dom: toNumber(row.taux_vignette_rhum_dom, 0),
-    taux_droits_abv: toNumber(row.taux_droits_abv, 0),
-    taux_vignette_abv: toNumber(row.taux_vignette_abv, 0),
-    taux_tva: toNumber(row.taux_tva, 20),
-    remise_fixe_pro: toNumber(row.remise_fixe_pro, 5),
+    taux_droits_alcool: toNumber(row.taux_droits_alcool ?? 0),
+    taux_vignette_alcool: toNumber(row.taux_vignette_alcool ?? 0),
+    taux_droits_rhum_dom: toNumber(row.taux_droits_rhum_dom ?? 0),
+    taux_vignette_rhum_dom: toNumber(row.taux_vignette_rhum_dom ?? 0),
+    taux_droits_abv: toNumber(row.taux_droits_abv ?? 0),
+    taux_vignette_abv: toNumber(row.taux_vignette_abv ?? 0),
+    taux_tva: toNumber(row.taux_tva ?? 20),
   };
 }
 
