@@ -121,6 +121,7 @@ async function getParametresFiscaux(): Promise<ParametresFiscaux> {
     taux_droits_abv: toNumber(row.taux_droits_abv ?? 0),
     taux_vignette_abv: toNumber(row.taux_vignette_abv ?? 0),
     taux_tva: toNumber(row.taux_tva ?? 20),
+    remise_fixe_pro: toNumber(row.remise_fixe_pro ?? 5),
   };
 }
 
