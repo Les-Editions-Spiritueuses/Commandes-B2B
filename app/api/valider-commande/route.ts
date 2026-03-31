@@ -136,10 +136,10 @@ async function getTranchesExpedition(): Promise<TrancheExpedition[]> {
   }
 
   return ((data ?? []) as TrancheExpeditionRow[]).map((row) => ({
-  qte_min: toNumber(row.qte_min ?? 0),
-  qte_max: row.qte_max === null ? null : toNumber(row.qte_max ?? 0),
-  frais_ttc: toNumber(row.frais_ttc ?? 0),
-}));
+    qte_min: toNumber(row.qte_min ?? 0),
+    qte_max: row.qte_max == null ? null : toNumber(row.qte_max ?? 0),
+    frais_ttc: toNumber(row.frais_ttc ?? 0),
+  }));
 }
 
 async function getPaliersRemise(): Promise<PalierRemise[]> {
@@ -153,9 +153,9 @@ async function getPaliersRemise(): Promise<PalierRemise[]> {
   }
 
   return ((data ?? []) as PalierRemiseRow[]).map((row) => ({
-    qte_min: toNumber(row.qte_min, 0),
-    qte_max: row.qte_max == null ? null : toNumber(row.qte_max, 0),
-    taux_remise: toNumber(row.taux_remise, 0),
+    qte_min: toNumber(row.qte_min ?? 0),
+    qte_max: row.qte_max == null ? null : toNumber(row.qte_max ?? 0),
+    taux_remise: toNumber(row.taux_remise ?? 0),
   }));
 }
 
@@ -445,18 +445,18 @@ export async function POST(request: Request) {
       const produitCommande: ProduitCommande = {
         code_produit: text(produit.code_produit),
         libelle: text(produit.libelle),
-        tarif_base_ht: toNumber(produit.tarif_base_ht, 0),
+        tarif_base_ht: toNumber(produit.tarif_base_ht ?? 0),
         volume_l:
-          produit.volume_l == null ? null : toNumber(produit.volume_l, 0),
+          produit.volume_l == null ? null : toNumber(produit.volume_l ?? 0),
         alcool_vol:
-          produit.alcool_vol == null ? null : toNumber(produit.alcool_vol, 0),
+          produit.alcool_vol == null ? null : toNumber(produit.alcool_vol ?? 0),
         categorie_fiscale: nullableText(produit.categorie_fiscale),
         remise_coffret_pct: getRemiseCoffretPct(produit),
       };
 
       return {
         produit: produitCommande,
-        quantite: toNumber(quantites[codeProduit], 0),
+        quantite: toNumber(quantites[codeProduit] ?? 0),
       };
     });
 
@@ -476,19 +476,19 @@ export async function POST(request: Request) {
         produit_code: ligne.code_produit,
         produit_libelle: ligne.libelle,
         categorie_fiscale: nullableText(ligne.categorie_fiscale),
-        alcool_vol: toNumber(ligne.alcool_vol, 0),
-        volume_l: toNumber(ligne.volume_l, 0),
-        quantite: toNumber(ligne.quantite, 0),
-        tarif_base_ht: toNumber(ligne.tarifBaseHT, 0),
-        remise_a: toNumber(ligne.remiseProPct, 0),
-        remise_b: toNumber(ligne.remiseParticulierePct, 0),
-        remise_c: toNumber(ligne.remiseCoffretPct, 0),
-        remise_d: toNumber(ligne.remisePalierPct, 0),
-        prix_unitaire_remise_ht: toNumber(ligne.tarifRemiseHT, 0),
-        total_ht_ligne: toNumber(ligne.totalHT, 0),
-        droits_ligne: toNumber(ligne.droitsLigne, 0),
-        tva_ligne: toNumber(ligne.tvaLigne, 0),
-        total_ttc_ligne: toNumber(ligne.totalTTCLigne, 0),
+        alcool_vol: toNumber(ligne.alcool_vol ?? 0),
+        volume_l: toNumber(ligne.volume_l ?? 0),
+        quantite: toNumber(ligne.quantite ?? 0),
+        tarif_base_ht: toNumber(ligne.tarifBaseHT ?? 0),
+        remise_a: toNumber(ligne.remiseProPct ?? 0),
+        remise_b: toNumber(ligne.remiseParticulierePct ?? 0),
+        remise_c: toNumber(ligne.remiseCoffretPct ?? 0),
+        remise_d: toNumber(ligne.remisePalierPct ?? 0),
+        prix_unitaire_remise_ht: toNumber(ligne.tarifRemiseHT ?? 0),
+        total_ht_ligne: toNumber(ligne.totalHT ?? 0),
+        droits_ligne: toNumber(ligne.droitsLigne ?? 0),
+        tva_ligne: toNumber(ligne.tvaLigne ?? 0),
+        total_ttc_ligne: toNumber(ligne.totalTTCLigne ?? 0),
       };
     });
 
